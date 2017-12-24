@@ -51,12 +51,22 @@ namespace EveTools.Views
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             stackingPanel.Children.Clear();
-            Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(),(jobType.SelectedIndex==0)?1:8,1);
+            double bm = Convert.ToDouble(bme.SelectedValue) / 100;
+            string s = cme.SelectedValue.ToString();
+            double cm;
+            if (s.Equals("Same"))
+            {
+                cm = bm;
+            }
+            else
+            {
+                cm = Convert.ToDouble(cme.SelectedValue) / 100;
+            }
+            Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), (jobType.SelectedIndex==0)?1:8,Convert.ToInt32(runs.Text), bm, cm);
             BPDisplayModel bpd = new BPDisplayModel(bp,40,1);
             List<Expander> exp = bpd.getViews();
             foreach(Expander ex in exp)
             {
-                //ex.IsExpanded = true;
                 stackingPanel.Children.Add(ex);
             }
         }

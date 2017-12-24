@@ -173,5 +173,8 @@
   <ItemGroup>
     <Resource Include="Resources\back.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Dump20171224.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

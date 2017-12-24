@@ -109,10 +109,10 @@
             <System:String>Manufacture</System:String>
             <System:String>Invention</System:String>
         </ComboBox>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="792,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" FontSize="18" Background="#FFFFDFA7" TextAlignment="Right"/>
+        <TextBox x:Name="runs" HorizontalAlignment="Left" Margin="792,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" FontSize="18" Background="#FFFFDFA7" TextAlignment="Right"/>
         <Label x:Name="label_Copy" Content="What Are You Making?" HorizontalAlignment="Left" Margin="182,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Label x:Name="label_Copy1" Content="No. Of Runs" HorizontalAlignment="Left" Margin="792,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="900,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0">
+        <ComboBox x:Name="bme" HorizontalAlignment="Left" Margin="900,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0">
             <System:String>0</System:String>
             <System:String>1</System:String>
             <System:String>2</System:String>
@@ -125,7 +125,7 @@
             <System:String>9</System:String>
             <System:String>10</System:String>
         </ComboBox>
-        <ComboBox x:Name="comboBox1" Margin="989,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67">
+        <ComboBox x:Name="cme" Margin="989,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67">
             <System:String>Same</System:String>
             <System:String>0</System:String>
             <System:String>1</System:String>

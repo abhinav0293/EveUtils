@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EveTools.DAO;
 using EveTools.Tools;
 
@@ -25,9 +22,13 @@ namespace EveTools.DataModels
         public bool hasPI = false;
         public bool hasOther = false;
         public long count = 1;
+        public double bme = 0.0;
+        public double cme = 0.0;
 
-        public Blueprint(string name, int activity, long count)
+        public Blueprint(string name, int activity, long count, double bme, double cme)
         {
+            this.bme = 1.0 - bme;
+            this.cme = 1.0 - cme;
             this.count = count;
             components = Queries.getInstance().getCompList(name,activity);
             skills = Queries.getInstance().getBPSkills(name, activity);
@@ -42,6 +43,7 @@ namespace EveTools.DataModels
         {
             foreach(Component comp in components)
             {
+                comp.compCount = (long)Math.Ceiling(comp.compCount * bme * count);
                 if (comp.hasBlueprint && activity==1)
                 {
                     getCompReq(comp);
@@ -52,16 +54,16 @@ namespace EveTools.DataModels
                     switch (Queries.getInstance().checkType(comp.compId))
                     {
                         case "Mineral":
-                            addMineral(comp,count);
+                            addMineral(comp);
                             break;
                         case "PI":
-                            addPI(comp, count);
+                            addPI(comp);
                             break;
                         case "Moon":
-                            addMoonGoo(comp,count);
+                            addMoonGoo(comp);
                             break;
                         case "Other":
-                            addOther(comp,count);
+                            addOther(comp);
                             break;
                     }
                 }
@@ -70,7 +72,7 @@ namespace EveTools.DataModels
 
         private void getCompReq(Component comp)
         {
-            Blueprint bp = new Blueprint(comp.compName, 1, count*comp.compCount);
+            Blueprint bp = new Blueprint(comp.compName, 1, comp.compCount,1.0-cme,1.0-cme);
             comp.bp = bp;
             if (bp.hasPI)
             {
@@ -78,7 +80,7 @@ namespace EveTools.DataModels
                 {
                     PI pi = bp.piList[p];
                     Component c = new Component(pi.id, pi.name, pi.count, false);
-                    addPI(c, comp.compCount);
+                    addPI(c);
                 }
             }
 
@@ -88,7 +90,7 @@ namespace EveTools.DataModels
                 {
                     MoonGoo m = bp.mg[s];
                     Component c = new Component(m.id, m.name, m.count, false);
-                    addMoonGoo(c, comp.compCount);
+                    addMoonGoo(c);
                 }
             }
 
@@ -98,7 +100,7 @@ namespace EveTools.DataModels
                 {
                     Other o = bp.otherComps[s];
                     Component c = new Component(o.id, o.name, o.count, false);
-                    addOther(c, comp.compCount);
+                    addOther(c);
                 }
             }
 
@@ -121,7 +123,7 @@ namespace EveTools.DataModels
             }
         }
 
-        private void addMineral(Component comp, long multiplier)
+        private void addMineral(Component comp)
         {
             if (!hasMineral)
             {
@@ -131,33 +133,33 @@ namespace EveTools.DataModels
             switch (comp.compName)
             {
                 case "Tritanium":
-                    mineral.trit += comp.compCount * multiplier;
+                    mineral.trit += comp.compCount;
                     break;
                 case "Pyerite":
-                    mineral.pyerite += comp.compCount * multiplier;
+                    mineral.pyerite += comp.compCount;
                     break;
                 case "Mexallon":
-                    mineral.mexallon += comp.compCount * multiplier;
+                    mineral.mexallon += comp.compCount;
                     break;
                 case "Zydrine":
-                    mineral.zydrine += comp.compCount * multiplier;
+                    mineral.zydrine += comp.compCount;
                     break;
                 case "Megacyte":
-                    mineral.megacyte += comp.compCount * multiplier;
+                    mineral.megacyte += comp.compCount;
                     break;
                 case "Isogen":
-                    mineral.isogen += comp.compCount * multiplier;
+                    mineral.isogen += comp.compCount;
                     break;
                 case "Nocxium":
-                    mineral.nocxium += comp.compCount * multiplier;
+                    mineral.nocxium += comp.compCount;
                     break;
                 case "Morphite":
-                    mineral.morphite += comp.compCount * multiplier;
+                    mineral.morphite += comp.compCount;
                     break;
             }
         }
 
-        private void addPI(Component c, long multiplier)
+        private void addPI(Component c)
         {
             if (!hasPI)
             {
@@ -167,15 +169,15 @@ namespace EveTools.DataModels
             try
             {
                 PI p = piList[c.compName];
-                p.count += c.compCount * multiplier;
+                p.count += c.compCount;
             }
             catch (KeyNotFoundException)
             {
-                piList.Add(c.compName, new PI(c.compName, c.compId, c.compCount * multiplier));
+                piList.Add(c.compName, new PI(c.compName, c.compId, c.compCount));
             }
         }
 
-        private void addMoonGoo(Component c, long multiplier)
+        private void addMoonGoo(Component c)
         {
             if (!hasMG)
             {
@@ -185,15 +187,15 @@ namespace EveTools.DataModels
             try
             {
                 MoonGoo m = mg[c.compName];
-                m.count += c.compCount * multiplier;
+                m.count += c.compCount;
             }
             catch (KeyNotFoundException)
             {
-                mg.Add(c.compName, new MoonGoo(c.compName, c.compId, c.compCount * multiplier));
+                mg.Add(c.compName, new MoonGoo(c.compName, c.compId, c.compCount));
             }
         }
 
-        private void addOther(Component c, long multiplier)
+        private void addOther(Component c)
         {
             if(!hasOther)
             {
@@ -203,11 +205,11 @@ namespace EveTools.DataModels
             try
             {
                 Other o = otherComps[c.compName];
-                o.count += c.compCount * multiplier;
+                o.count += c.compCount;
             }
             catch (KeyNotFoundException)
             {
-                otherComps.Add(c.compName, new Other(c.compName, c.compId, c.compCount * multiplier));
+                otherComps.Add(c.compName, new Other(c.compName, c.compId, c.compCount));
             }
         }
     }
