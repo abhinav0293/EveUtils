@@ -169,7 +169,7 @@ namespace EveTools.DAO
 
             var bpsq = from ct
                        in eve.blueprint_skills
-                       where ct.bp_act_id == bp.id && ct.bp_act_id == activity
+                       where ct.bp_act_id == bpa.id
                        select ct;
             List<blueprint_skills> bsl = bpsq.ToList();
 
@@ -181,6 +181,38 @@ namespace EveTools.DAO
                 skillList.Add(s);
             }
             return skillList;
+        }
+
+        public List<Skill> getSkillReq(int id)
+        {
+            var query = from ct
+                        in eve.skills
+                        where ct.skill_id == id
+                        select ct;
+            try
+            {
+                List<Skill> ls = new List<Skill>();
+                List<skill> s = query.ToList();
+                if (s.Count > 0)
+                {
+                    foreach (skill st in s)
+                    {
+
+                        Skill sk = new Skill((int)st.reqSkill_id, getItemName((int)st.reqSkill_id), (int)st.level);
+                        ls.Add(sk);
+                    }
+                    return ls;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+                        
         }
     }
 }

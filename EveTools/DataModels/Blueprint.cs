@@ -31,12 +31,16 @@ namespace EveTools.DataModels
             this.cme = 1.0 - cme;
             this.count = count;
             components = Queries.getInstance().getCompList(name,activity);
-            skills = Queries.getInstance().getBPSkills(name, activity);
             identifyComponents(activity);
             if (hasMineral)
             {
                 ores = new OreCalculator(mineral).calcOres();
             }
+        }
+
+        public void getSkills(string name, int activity)
+        {
+            skills = Queries.getInstance().getBPSkills(name, activity);
         }
 
         private void identifyComponents(int activity)

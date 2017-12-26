@@ -92,6 +92,7 @@
     <Compile Include="DAO\EveModel.cs" />
     <Compile Include="DAO\item.cs" />
     <Compile Include="DAO\Queries.cs" />
+    <Compile Include="DAO\skill.cs" />
     <Compile Include="DataModels\Blueprint.cs" />
     <Compile Include="DataModels\BPDisplayModel.cs" />
     <Compile Include="DataModels\Component.cs" />

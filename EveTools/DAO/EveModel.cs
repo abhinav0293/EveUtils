@@ -8,7 +8,7 @@ namespace EveTools.DAO
     public partial class EveModel : DbContext
     {
         public EveModel()
-            : base("name=EveMod")
+            : base("name=EveMo")
         {
         }
 
@@ -17,6 +17,7 @@ namespace EveTools.DAO
         public virtual DbSet<blueprint_skills> blueprint_skills { get; set; }
         public virtual DbSet<bp_components> bp_components { get; set; }
         public virtual DbSet<item> items { get; set; }
+        public virtual DbSet<skill> skills { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -63,12 +63,17 @@ namespace EveTools.Views
                 cm = Convert.ToDouble(cme.SelectedValue) / 100;
             }
             Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), (jobType.SelectedIndex==0)?1:8,Convert.ToInt32(runs.Text), bm, cm);
+            bp.getSkills(Actb.SelectedItem.ToString(), (jobType.SelectedIndex == 0) ? 1 : 8);
             BPDisplayModel bpd = new BPDisplayModel(bp,40,1);
             List<Expander> exp = bpd.getViews();
-            foreach(Expander ex in exp)
+            foreach(Expander exi in exp)
             {
-                stackingPanel.Children.Add(ex);
+                stackingPanel.Children.Add(exi);
             }
+            Expander ex = bpd.getSkills();
+            ex.Background = new SolidColorBrush(Colors.SlateBlue);
+            ex.Content = bpd.createSkills(bp.skills, 1);
+            stackingPanel.Children.Add(ex);
         }
 
         #region menu_iems
