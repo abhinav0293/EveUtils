@@ -10,9 +10,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using EveTools.DataModels;
+using EveTools.DAO;
 
 namespace EveTools.Views
 {
@@ -51,6 +50,32 @@ namespace EveTools.Views
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             stackingPanel.Children.Clear();
+            if (jobType.SelectedIndex == 0)
+            {
+                manufacturingJob();
+            }
+            else
+            {
+                inventionJob();
+            }
+        }
+
+        #region job_type
+        private void manufacturingJob()
+        {
+            double sme = 0;
+            switch (rigs.SelectedIndex)
+            {
+                case 0:
+                    sme = 0;
+                    break;
+                case 1:
+                    sme = 0.01;
+                    break;
+                case 2:
+                    sme = 0.02;
+                    break;
+            }
             double bm = Convert.ToDouble(bme.SelectedValue) / 100;
             string s = cme.SelectedValue.ToString();
             double cm;
@@ -62,20 +87,21 @@ namespace EveTools.Views
             {
                 cm = Convert.ToDouble(cme.SelectedValue) / 100;
             }
-            Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), (jobType.SelectedIndex==0)?1:8,Convert.ToInt32(runs.Text), bm, cm);
+            Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
             bp.getSkills(Actb.SelectedItem.ToString(), (jobType.SelectedIndex == 0) ? 1 : 8);
-            BPDisplayModel bpd = new BPDisplayModel(bp,40,1);
-            List<Expander> exp = bpd.getViews();
-            foreach(Expander exi in exp)
-            {
-                stackingPanel.Children.Add(exi);
-            }
-            Expander ex = bpd.getSkills();
-            ex.Background = new SolidColorBrush(Colors.SlateBlue);
-            ex.Content = bpd.createSkills(bp.skills, 1);
-            stackingPanel.Children.Add(ex);
+            ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 40, 1);
+            stackingPanel.Children.Add(bpd.overview);
+            
         }
 
+        private void inventionJob()
+        {
+            InventionDisplayModel idm = new InventionDisplayModel(new Invention(Queries.getInstance().getItemId(Actb.SelectedItem.ToString()),Convert.ToInt32(runs.Text)));
+            stackingPanel.Children.Add(idm.main);
+            stackingPanel.Children.Add(idm.other);
+            stackingPanel.Children.Add(idm.skills);
+        }
+        #endregion
         #region menu_iems
         private void Exit_Click(object sender, RoutedEventArgs e)
         {

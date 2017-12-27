@@ -9,6 +9,8 @@ namespace EveTools.DAO
 {
     public class Queries
     {
+
+        #region singleton_crap
         private Queries()
         {
 
@@ -23,7 +25,9 @@ namespace EveTools.DAO
                 instance = new Queries();
             return instance;
         }
+        #endregion
 
+        #region app_init_methods
         public List<string> getManuList()
         {
             List<string> ret = new List<string>();
@@ -77,7 +81,9 @@ namespace EveTools.DAO
             ret.Sort();
             return ret;
         }
+        #endregion
 
+        #region job_requests
         public List<Component> getCompList(String name, int activity)
         {
             var bpq = from ct
@@ -108,11 +114,69 @@ namespace EveTools.DAO
             return comps;
         }
 
+        public void getInventionDetails(int id, Invention i)
+        {
+            var query = from ct
+                        in eve.blueprint_activity
+                        where ct.product_id == id && ct.activity_id == 8
+                        select ct;
+            blueprint_activity ba = query.Single();
+
+            var cquery = from ct
+                         in eve.bp_components
+                         where ct.bp_act_id == ba.id
+                         select ct;
+            List<bp_components> comps = cquery.ToList();
+
+            i.in_bp = getItemName((int)ba.bp_id);
+            i.product = getItemName(id);
+
+            foreach (bp_components comp in comps)
+            {
+                Other o = new Other(getItemName((int)comp.item_id), (int)comp.item_id, (long)comp.count);
+                i.reqs.Add(o);
+            }
+
+            var squery = from ct
+                         in eve.blueprint_skills
+                         where ct.bp_act_id == ba.id
+                         select ct;
+            List<blueprint_skills> bs = squery.ToList();
+
+            foreach (blueprint_skills b in bs)
+            {
+                Skill s = new Skill((int)b.skill_id, getItemName((int)b.skill_id), (int)b.level);
+                i.reqSkills.Add(s);
+            }
+        }
+        #endregion
+
+        #region item_handling
         public string getItemName(int id)
         {
             return getItem(id).name;
         }
 
+        public item getItem(int id)
+        {
+            var query = from ct
+                        in eve.items
+                        where ct.id == id
+                        select ct;
+            return query.Single();
+        }
+
+        public int getItemId(string name)
+        {
+            var query = from ct
+                        in eve.items
+                        where ct.name.Equals(name)
+                        select ct.id;
+            return (int)query.Single();
+        }
+        #endregion
+
+        #region checks
         public bool checkBlueprint(string name)
         {
             name += " Blueprint";
@@ -143,16 +207,9 @@ namespace EveTools.DAO
                 return "Moon";
             return "Other";
         }
+        #endregion
 
-        public item getItem(int id)
-        {
-            var query = from ct
-                        in eve.items
-                        where ct.id == id
-                        select ct;
-            return query.Single();
-        }
-
+        #region skills
         public List<Skill> getBPSkills(string name, int activity)
         {
             var bpq = from ct
@@ -212,7 +269,7 @@ namespace EveTools.DAO
             {
                 return null;
             }
-                        
         }
+        #endregion
     }
 }

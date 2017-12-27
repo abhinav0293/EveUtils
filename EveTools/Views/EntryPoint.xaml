@@ -141,11 +141,17 @@
         </ComboBox>
         <Label x:Name="label_Copy2" Content="BPME" HorizontalAlignment="Left" Margin="900,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Label x:Name="label_Copy3" Content="CME" HorizontalAlignment="Left" Margin="989,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="1077,60,0,0" VerticalAlignment="Top" Width="155" FontSize="18" Background="#FF95FFAD" FontWeight="Bold" Click="Search_Click"/>
+        <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="1161,60,0,0" VerticalAlignment="Top" Width="97" FontSize="18" Background="#FF95FFAD" FontWeight="Bold" Click="Search_Click"/>
         <Label x:Name="label_Copy4" Content="Job Type" HorizontalAlignment="Left" Margin="20,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <ScrollViewer Margin="10,110,479,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
-            <StackPanel x:Name="stackingPanel" HorizontalAlignment="Left" Width="Auto" Orientation="Vertical">
+            <StackPanel x:Name="stackingPanel" HorizontalAlignment="Left" Width="Auto" Orientation="Vertical" FlowDirection="LeftToRight">
             </StackPanel>
         </ScrollViewer>
+        <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67">
+            <System:String>None</System:String>
+            <System:String>T1</System:String>
+            <System:String>T2</System:String>
+        </ComboBox>
+        <Label x:Name="label_Copy5" Content="Rigs" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
     </Grid>
 </Window>
