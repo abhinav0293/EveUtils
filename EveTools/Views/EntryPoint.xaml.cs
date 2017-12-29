@@ -49,6 +49,8 @@ namespace EveTools.Views
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            App.innerColor = -1;
+            App.currentColor = -1;
             stackingPanel.Children.Clear();
             if (jobType.SelectedIndex == 0)
             {
@@ -89,8 +91,12 @@ namespace EveTools.Views
             }
             Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
             bp.getSkills(Actb.SelectedItem.ToString(), (jobType.SelectedIndex == 0) ? 1 : 8);
-            ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 40, 1);
-            stackingPanel.Children.Add(bpd.overview);
+            ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 20, 1, false);
+            List<Expander> list = bpd.getViews();
+            foreach(Expander e in list)
+            {
+                stackingPanel.Children.Add(e);
+            }
             
         }
 

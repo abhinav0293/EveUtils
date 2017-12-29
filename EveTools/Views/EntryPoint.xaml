@@ -143,7 +143,7 @@
         <Label x:Name="label_Copy3" Content="CME" HorizontalAlignment="Left" Margin="989,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="1161,60,0,0" VerticalAlignment="Top" Width="97" FontSize="18" Background="#FF95FFAD" FontWeight="Bold" Click="Search_Click"/>
         <Label x:Name="label_Copy4" Content="Job Type" HorizontalAlignment="Left" Margin="20,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <ScrollViewer Margin="10,110,479,10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Margin="10,110,483,10" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="stackingPanel" HorizontalAlignment="Left" Width="Auto" Orientation="Vertical" FlowDirection="LeftToRight">
             </StackPanel>
         </ScrollViewer>
