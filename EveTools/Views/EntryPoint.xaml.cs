@@ -21,6 +21,8 @@ namespace EveTools.Views
     public partial class EntryPoint : Window
     {
         public volatile bool set = false;
+        private Blueprint bp;
+
         public EntryPoint()
         {
             InitPage ip = new InitPage();
@@ -89,7 +91,7 @@ namespace EveTools.Views
             {
                 cm = Convert.ToDouble(cme.SelectedValue) / 100;
             }
-            Blueprint bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
+            bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
             bp.getSkills(Actb.SelectedItem.ToString(), (jobType.SelectedIndex == 0) ? 1 : 8);
             ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 20, 1, false);
             List<Expander> list = bpd.getViews();
@@ -105,7 +107,7 @@ namespace EveTools.Views
             InventionDisplayModel idm = new InventionDisplayModel(new Invention(Queries.getInstance().getItemId(Actb.SelectedItem.ToString()),Convert.ToInt32(runs.Text)));
             stackingPanel.Children.Add(idm.main);
             stackingPanel.Children.Add(idm.other);
-            stackingPanel.Children.Add(idm.skills);
+            //stackingPanel.Children.Add(idm.skills);
         }
         #endregion
         #region menu_iems
@@ -120,5 +122,10 @@ namespace EveTools.Views
             es.ShowDialog();
         }
         #endregion
+
+        private void itemDesc_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(bp.desc);
+        }
     }
 }

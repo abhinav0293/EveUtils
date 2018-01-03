@@ -23,7 +23,7 @@ namespace EveTools.DataModels
             this.i = i;
             createMainView();
             createOtherView();
-            createSkillsView();
+            //createSkillsView();
         }
 
         static InventionDisplayModel()
@@ -48,41 +48,50 @@ namespace EveTools.DataModels
 
         private void createMainView()
         {
-            Color t = new Color();
-            t.A = 255;
-            t.R = 0;
-            t.G = 136;
-            t.B = 145;
-            SolidColorBrush ba = new SolidColorBrush(t);
-
             Color f = new Color();
             f.A = 255;
             f.R = 240;
             f.G = 168;
             f.B = 48;
+            Color t = new Color();
+            t.A = 255;
+            t.R = 0;
+            t.G = 136;
+            t.B = 145;
+
             SolidColorBrush fg = new SolidColorBrush(f);
+            SolidColorBrush ba = new SolidColorBrush(t);
 
             main = new Expander();
             TextBox tb = new TextBox
             {
                 Text = "Blueprint Required",
                 Style = tbStyle,
-                Width = 717,
+                Width = 690,
                 FontSize = 20,
-                Foreground = new SolidColorBrush(Colors.Black)
+                Foreground = new SolidColorBrush(Colors.Black),
+                HorizontalAlignment = HorizontalAlignment.Left
             };
             main.Background = new SolidColorBrush(Colors.CornflowerBlue);
             main.Header = tb;
-            main.Content = new TextBox
+            main.Content = new Border
             {
-                Text = i.in_bp,
-                Style = tbStyle,
-                Width = 700,
-                FontSize = 20,
-                Margin = new Thickness(45,0,0,0),
-                Foreground = fg,
-                Background = ba
+                HorizontalAlignment = HorizontalAlignment.Left,
+                BorderBrush = new SolidColorBrush(Colors.YellowGreen),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(25, 0, 0, 0),
+                Child = new TextBox
+                {
+                    Text = i.in_bp,
+                    Style = tbStyle,
+                    Width = 722,
+                    FontSize = 20,
+                    Background = ba,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    Foreground = fg
+                }
             };
+            
         }
 
         private void createOtherView()
@@ -98,56 +107,15 @@ namespace EveTools.DataModels
             };
             other.Background = new SolidColorBrush(Colors.LightBlue);
             other.Header = tb;
+            other.Width = 755;
             StackPanel sp = new StackPanel();
             sp.Orientation = Orientation.Vertical;
             other.Content = sp;
             foreach (Other p in i.reqs)
             {
-                //Border b = GenerateHeader.createColumn(p.name, p.count, 45, 1);
-                //sp.Children.Add(b);
+                Border b = ItemGenerator.generateRow(p.name, p.count, 20, 1, false);
+                sp.Children.Add(b);
             }
-        }
-
-        private void createSkillsView()
-        {
-            skills = new Expander();
-            TextBox tb = new TextBox
-            {
-                Text = "Skills Required",
-                Style = tbStyle,
-                Width = 717,
-                FontSize = 20,
-                Foreground = new SolidColorBrush(Colors.Black)
-            };
-            skills.Background = new SolidColorBrush(Colors.Aqua);
-            skills.Header = tb;
-            skills.Content = createSkills(i.reqSkills, 45, 1);
-        }
-
-        public StackPanel createSkills(List<Skill> skill, int offset, int level)
-        {
-            StackPanel sp = new StackPanel();
-            foreach (Skill s in skill)
-            {
-                if (s.hasReqSkills)
-                {
-                    //Grid b = GenerateHeader.createHeader(s.skillName, s.level, offset, level);
-                    //Expander exp = new Expander
-                    //{
-                    //    Header = b,
-                    //    Content = createSkills(s.reqSkills, offset, level + 1),
-                    //    Margin = new Thickness(20, 0, 0, 0)
-                    //};
-                    //sp.Children.Add(exp);
-                }
-                else
-                {
-                    //Border b = GenerateHeader.GenerateSkillColumn(s.skillName, s.level, offset + 5, level);
-                    //sp.Children.Add(b);
-                }
-
-            }
-            return sp;
         }
     }
 }

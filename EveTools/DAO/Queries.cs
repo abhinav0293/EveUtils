@@ -174,6 +174,19 @@ namespace EveTools.DAO
                         select ct.id;
             return (int)query.Single();
         }
+
+        public string getItemDesc(string name)
+        {
+            if(name.EndsWith(" Blueprint"))
+            {
+                name = name.Substring(0, name.Length - 10);
+            }
+            var query = from ct
+                        in eve.items
+                        where ct.name.Equals(name)
+                        select ct.Description;
+            return query.Single();
+        }
         #endregion
 
         #region checks

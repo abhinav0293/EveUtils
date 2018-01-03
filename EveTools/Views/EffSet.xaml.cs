@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EveTools.Views
 {
@@ -22,13 +13,26 @@ namespace EveTools.Views
         public EffSet()
         {
             InitializeComponent();
-            spodeff.Text = Convert.ToString(App.eff["spod"]);
-            gneisseff.Text = Convert.ToString(App.eff["gneiss"]);
-            crokiteEff.Text = Convert.ToString(App.eff["crokite"]);
-            bistotEff.Text = Convert.ToString(App.eff["bistot"]);
-            arkonorEff.Text = Convert.ToString(App.eff["ark"]);
-            ochreEff.Text = Convert.ToString(App.eff["ochre"]);
-            merEff.Text = Convert.ToString(App.eff["merc"]);
+            if (App.eff != null)
+            {
+                spodeff.Text = Convert.ToString(App.eff["spod"]);
+                gneisseff.Text = Convert.ToString(App.eff["gneiss"]);
+                crokiteEff.Text = Convert.ToString(App.eff["crokite"]);
+                bistotEff.Text = Convert.ToString(App.eff["bistot"]);
+                arkonorEff.Text = Convert.ToString(App.eff["ark"]);
+                ochreEff.Text = Convert.ToString(App.eff["ochre"]);
+                merEff.Text = Convert.ToString(App.eff["merc"]);
+            }
+            else
+            {
+                spodeff.Text = "0";
+                gneisseff.Text = "0";
+                crokiteEff.Text = "0";
+                bistotEff.Text = "0";
+                arkonorEff.Text = "0";
+                ochreEff.Text = "0";
+                merEff.Text = "0";
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -37,7 +41,7 @@ namespace EveTools.Views
             try
             {
                 spod = Convert.ToDouble(spodeff.Text);
-                if (spod >= 1)
+                if (spod >= 1 || spod <= 0)
                 {
                     throw new Exception();
                 }
@@ -52,7 +56,7 @@ namespace EveTools.Views
             try
             {
                 gneiss = Convert.ToDouble(gneisseff.Text);
-                if (gneiss >= 1)
+                if (gneiss >= 1 || gneiss <= 0)
                 {
                     throw new Exception();
                 }
@@ -67,7 +71,7 @@ namespace EveTools.Views
             try
             {
                 crokite = Convert.ToDouble(crokiteEff.Text);
-                if (crokite >= 1)
+                if (crokite >= 1 || crokite <= 0)
                 {
                     throw new Exception();
                 }
@@ -82,7 +86,7 @@ namespace EveTools.Views
             try
             {
                 bistot = Convert.ToDouble(bistotEff.Text);
-                if (bistot >= 1)
+                if (bistot >= 1 || bistot <= 0)
                 {
                     throw new Exception();
                 }
@@ -97,7 +101,7 @@ namespace EveTools.Views
             try
             {
                 ark = Convert.ToDouble(arkonorEff.Text);
-                if (ark >= 1)
+                if (ark >= 1 || ark <=0)
                 {
                     throw new Exception();
                 }
@@ -112,7 +116,7 @@ namespace EveTools.Views
             try
             {
                 merc = Convert.ToDouble(merEff.Text);
-                if (merc >= 1)
+                if (merc >= 1 || merc <= 0)
                 {
                     throw new Exception();
                 }
@@ -138,7 +142,7 @@ namespace EveTools.Views
                 ochreEff.Focus();
                 return;
             }
-
+            App.eff = new Dictionary<string, double>();
             App.eff.Clear();
             App.eff.Add("spod", spod);
             App.eff.Add("gneiss", gneiss);
@@ -154,6 +158,15 @@ namespace EveTools.Views
         {
             TextBox tb = (TextBox)sender;
             tb.SelectAll();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (App.eff == null)
+            {
+                MessageBox.Show("Please Set All Repoc Effeciencies Before Closing");
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EveTools.Views"
         mc:Ignorable="d"
-        Title="Set Effeciency" Height="390" Width="330" WindowStyle="ThreeDBorderWindow" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Set Effeciency" Height="390" Width="330" WindowStyle="ThreeDBorderWindow" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Background="#FFBF4848">
         <Label x:Name="label" Content="Spodumain" HorizontalAlignment="Left" Margin="13,20,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Background="#00000000" Foreground="#FF2300FF"/>
         <Label x:Name="label1" Content=":" HorizontalAlignment="Left" Margin="120,18,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="#FF2300FF"/>

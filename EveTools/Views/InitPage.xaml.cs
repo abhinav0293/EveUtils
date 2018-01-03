@@ -28,11 +28,8 @@ namespace EveTools.Views
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             App.initData();
-            Filler.Content = "Manufacturing List";
             App.getManuList();
-            Filler.Content = "Invention List";
             App.getInvList();
-            Filler.Content = "You";
             App.initEff();
             parent.set = true;
             Close();

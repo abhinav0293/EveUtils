@@ -153,5 +153,13 @@
             <System:String>T2</System:String>
         </ComboBox>
         <Label x:Name="label_Copy5" Content="Rigs" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="itemDesc" HorizontalAlignment="Left" Height="24" Margin="796,110,0,0" VerticalAlignment="Top" Width="24" OpacityMask="Red" Background="#FFF3F795" ToolTip="Item Description" Click="itemDesc_Click">
+            <StackPanel Width="18" Height="18">
+                <Image Height="18" Width="18" Source="/EveTools;component/Resources/desc.ico" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <!--<Rectangle HorizontalAlignment="Left" Height="32" Margin="796,110,0,0" VerticalAlignment="Top" Width="32" Fill="#FFFFF699"/>
+        <Image HorizontalAlignment="Left" Height="32" Margin="796,110,0,0" VerticalAlignment="Top" Width="32" OpacityMask="Red" Source="/EveTools;component/Resources/desc.ico"/>-->
+        
     </Grid>
 </Window>

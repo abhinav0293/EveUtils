@@ -20,7 +20,7 @@ namespace EveTools
         public static List<string> manuList = new List<string>();
         public static List<string> invList = new List<string>();
         public static string root = "C:\\ProgramData\\EveTools";
-        public static Dictionary<string, double> eff = new Dictionary<string, double>();
+        public static Dictionary<string, double> eff;
         public static InitPage ip;
         public static List<Color> colorList = new List<Color>();
         public static List<Color> innerList = new List<Color>();
@@ -82,13 +82,6 @@ namespace EveTools
             }
             else
             {
-                eff.Add("spod", 0.0);
-                eff.Add("gneiss", 0.0);
-                eff.Add("crokite", 0.0);
-                eff.Add("ark", 0.0);
-                eff.Add("bistot", 0.0);
-                eff.Add("ochre", 0.0);
-                eff.Add("merc", 0.0);
                 EffSet es = new EffSet();
                 es.ShowDialog();
             }

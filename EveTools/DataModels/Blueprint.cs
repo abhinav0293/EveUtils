@@ -25,6 +25,7 @@ namespace EveTools.DataModels
         public double bme = 0.0;
         public double cme = 0.0;
         public double sme = 0.0;
+        public string desc = "";
 
         public Blueprint(string name, int activity, long count, double sme, double bme, double cme)
         {
@@ -33,6 +34,8 @@ namespace EveTools.DataModels
             this.sme = 1.0 - sme;
             this.count = count;
             components = Queries.getInstance().getCompList(name,activity);
+            desc = Queries.getInstance().getItemDesc(name);
+
             identifyComponents(activity);
             if (hasMineral)
             {
