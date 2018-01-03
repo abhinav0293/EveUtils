@@ -22,6 +22,7 @@ namespace EveTools.Views
     {
         public volatile bool set = false;
         private Blueprint bp;
+        InventionDisplayModel idm;
 
         public EntryPoint()
         {
@@ -51,6 +52,8 @@ namespace EveTools.Views
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            bp = null;
+            idm = null;
             App.innerColor = -1;
             App.currentColor = -1;
             stackingPanel.Children.Clear();
@@ -104,7 +107,7 @@ namespace EveTools.Views
 
         private void inventionJob()
         {
-            InventionDisplayModel idm = new InventionDisplayModel(new Invention(Queries.getInstance().getItemId(Actb.SelectedItem.ToString()),Convert.ToInt32(runs.Text)));
+            idm = new InventionDisplayModel(new Invention(Queries.getInstance().getItemId(Actb.SelectedItem.ToString()),Convert.ToInt32(runs.Text)));
             stackingPanel.Children.Add(idm.main);
             stackingPanel.Children.Add(idm.other);
             //stackingPanel.Children.Add(idm.skills);
@@ -125,7 +128,35 @@ namespace EveTools.Views
 
         private void itemDesc_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(bp.desc);
+            MessageBox.Show(bp.desc, Actb.SelectedItem.ToString());
+        }
+
+        private void copy_click(object sender, RoutedEventArgs e)
+        {
+            string st = "";
+            if (stackingPanel.Children.Count > 0)
+            {
+                if (bp != null)
+                {
+                    st = createClipboardDataManu();
+                }
+                else
+                {
+                    st = createClipboardDataInv();
+                }
+            }
+
+            Clipboard.SetText(st);
+        }
+
+        private string createClipboardDataInv()
+        {
+            return "";
+        }
+
+        private string createClipboardDataManu()
+        {
+            return "";
         }
     }
 }
