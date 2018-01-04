@@ -6,11 +6,10 @@
         xmlns:local="clr-namespace:EveTools.Views"
         mc:Ignorable="d"
         Title="Wait For It..." Height="160" Width="160" Background="#FF467A52" ContentRendered="Window_ContentRendered" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
-    <Grid>
+    <Grid OpacityMask="Red">
         <Grid.Background>
-            <ImageBrush ImageSource="/EveTools;component/Resources/eveback.jpg"/>
+            <ImageBrush ImageSource="/EveTools;component/Resources/eb11f6f2.ico"/>
         </Grid.Background>
-        <Label x:Name="label" Content="Loading..." HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="#FFC5FF00"/>
-        <Image HorizontalAlignment="Center" Height="60" Margin="0,25,0,0" VerticalAlignment="Top" Width="60" Source="/EveTools;component/Resources/eb11f6f2.ico"/>
+        <Label x:Name="label" Content="Loading..." HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Foreground="White"/>
     </Grid>
 </Window>

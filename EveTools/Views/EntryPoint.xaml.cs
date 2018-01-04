@@ -35,6 +35,8 @@ namespace EveTools.Views
 
             }
             InitializeComponent();
+            outputReset();
+            inputReset();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,19 +54,27 @@ namespace EveTools.Views
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            outputReset();
             bp = null;
             idm = null;
             App.innerColor = -1;
             App.currentColor = -1;
-            stackingPanel.Children.Clear();
+            if (Actb.SelectedItem == null)
+            {
+                MessageBox.Show("Type in the Search Box and Select an Item form the Drop Down before pressing the Search button", "Error");
+                return;
+            }
             if (jobType.SelectedIndex == 0)
             {
                 manufacturingJob();
+                projectButton.Visibility = Visibility.Visible;
             }
             else
             {
                 inventionJob();
             }
+            copyButton.Visibility = Visibility.Visible;
+            itemDesc.Visibility = Visibility.Visible;
         }
 
         #region job_type
@@ -95,7 +105,7 @@ namespace EveTools.Views
                 cm = Convert.ToDouble(cme.SelectedValue) / 100;
             }
             bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
-            bp.getSkills(Actb.SelectedItem.ToString(), (jobType.SelectedIndex == 0) ? 1 : 8);
+            bp.getSkills();
             ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 20, 1, false);
             List<Expander> list = bpd.getViews();
             foreach(Expander e in list)
@@ -110,10 +120,17 @@ namespace EveTools.Views
             idm = new InventionDisplayModel(new Invention(Queries.getInstance().getItemId(Actb.SelectedItem.ToString()),Convert.ToInt32(runs.Text)));
             stackingPanel.Children.Add(idm.main);
             stackingPanel.Children.Add(idm.other);
-            //stackingPanel.Children.Add(idm.skills);
+            stackingPanel.Children.Add(idm.skills);
         }
         #endregion
+
         #region menu_iems
+        private void clear_click(object sender, RoutedEventArgs e)
+        {
+            outputReset();
+            inputReset();
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -125,6 +142,24 @@ namespace EveTools.Views
             es.ShowDialog();
         }
         #endregion
+
+        private void outputReset()
+        {
+            stackingPanel.Children.Clear();
+            itemDesc.Visibility = Visibility.Hidden;
+            copyButton.Visibility = Visibility.Hidden;
+            projectButton.Visibility = Visibility.Hidden;
+        }
+
+        private void inputReset()
+        {
+            jobType.SelectedIndex = 0;
+            Actb.SelectedItem = "";
+            runs.Text = "";
+            bme.SelectedIndex = 0;
+            cme.SelectedIndex = 0;
+            rigs.SelectedIndex = 0;
+        }
 
         private void itemDesc_Click(object sender, RoutedEventArgs e)
         {

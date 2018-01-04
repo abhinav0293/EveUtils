@@ -26,6 +26,7 @@ namespace EveTools.DataModels
         public double cme = 0.0;
         public double sme = 0.0;
         public string desc = "";
+        public string name = "";
 
         public Blueprint(string name, int activity, long count, double sme, double bme, double cme)
         {
@@ -33,6 +34,7 @@ namespace EveTools.DataModels
             this.cme = 1.0 - cme;
             this.sme = 1.0 - sme;
             this.count = count;
+            this.name = name;
             components = Queries.getInstance().getCompList(name,activity);
             desc = Queries.getInstance().getItemDesc(name);
 
@@ -43,9 +45,9 @@ namespace EveTools.DataModels
             }
         }
 
-        public void getSkills(string name, int activity)
+        public void getSkills()
         {
-            skills = Queries.getInstance().getBPSkills(name, activity);
+            skills = Queries.getInstance().getBPSkills(name, 1);
         }
 
         private void identifyComponents(int activity)

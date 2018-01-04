@@ -20,6 +20,10 @@ namespace EveTools.DataModels
         {
             this.count = count;
             Queries.getInstance().getInventionDetails(outputId, this);
+            foreach(Other o in reqs)
+            {
+                o.count = o.count * count;
+            }
         }
     }
 }
