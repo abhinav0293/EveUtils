@@ -64,36 +64,47 @@ namespace EveTools.DataModels
             SolidColorBrush fg = new SolidColorBrush(f);
             SolidColorBrush ba = new SolidColorBrush(t);
 
-            main = new Expander();
             TextBox tb = new TextBox
             {
-                Text = "Blueprint Required",
+                Text = i.in_bp.Count==1?"Blueprint Required":"Relic Required(Any One)",
                 Style = tbStyle,
                 Width = 690,
                 FontSize = 20,
                 Foreground = new SolidColorBrush(Colors.Black),
                 HorizontalAlignment = HorizontalAlignment.Left
             };
-            main.Background = new SolidColorBrush(Colors.CornflowerBlue);
-            main.Header = tb;
-            main.Content = new Border
+            StackPanel sp = new StackPanel
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                BorderBrush = new SolidColorBrush(Colors.YellowGreen),
-                BorderThickness = new Thickness(1),
-                Margin = new Thickness(25, 0, 0, 0),
-                Child = new TextBox
-                {
-                    Text = i.in_bp,
-                    Style = tbStyle,
-                    Width = 722,
-                    FontSize = 20,
-                    Background = ba,
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    Foreground = fg
-                }
+                Orientation = Orientation.Vertical
             };
-            
+            main = new Expander
+            {
+                Background = new SolidColorBrush(Colors.CornflowerBlue),
+                Header = tb,
+                Content = sp
+            };
+
+            foreach (string s in i.in_bp)
+            {
+                Border b = new Border
+                {
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    BorderBrush = new SolidColorBrush(Colors.YellowGreen),
+                    BorderThickness = new Thickness(1),
+                    Margin = new Thickness(25, 0, 0, 0),
+                    Child = new TextBox
+                    {
+                        Text = s,
+                        Style = tbStyle,
+                        Width = 722,
+                        FontSize = 20,
+                        Background = ba,
+                        HorizontalAlignment = HorizontalAlignment.Left,
+                        Foreground = fg
+                    }
+                };
+                sp.Children.Add(b);
+            }
         }
 
         private void createOtherView()

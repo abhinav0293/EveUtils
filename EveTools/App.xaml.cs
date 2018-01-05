@@ -29,6 +29,9 @@ namespace EveTools
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            initData();
+            getManuList();
+            getInvList();
             colorList.Add(Colors.DodgerBlue);
             colorList.Add(Colors.CornflowerBlue);
             colorList.Add(Colors.SkyBlue);
@@ -112,6 +115,13 @@ namespace EveTools
             else
             {
                 invList = Queries.getInstance().getInvList();
+                HashSet<string> hs = new HashSet<string>();
+                foreach(string s in invList)
+                {
+                    hs.Add(s);
+                }
+                invList.Clear();
+                invList.AddRange(hs);
                 string st = JsonConvert.SerializeObject(invList);
                 File.WriteAllText(root + "\\inv.json", st);
             }

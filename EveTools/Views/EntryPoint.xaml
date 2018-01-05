@@ -48,7 +48,7 @@
     </Window.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/EveTools;component/Resources/back.jpg"/>
+            <ImageBrush ImageSource="/EveTools;component/Resources/background.jpg"/>
         </Grid.Background>
         <wpf:AutoCompleteTextBox VerticalAlignment="Top"
                                  Height="25"
@@ -73,7 +73,7 @@
                 <ListBox Background="#FFF0D6"/>
             </wpf:AutoCompleteTextBox.ItemsSelector>
         </wpf:AutoCompleteTextBox>
-        <Menu x:Name="menu" Margin="1,0" VerticalAlignment="Top" Background="#FFBF8F8F" Height="23">
+        <Menu x:Name="menu" Margin="1,0" VerticalAlignment="Top" Background="#FF8F9EBF" Height="23">
             <MenuItem Header="File" Background="#00000000" Template="{DynamicResource MenuItemControlTemplate1}" StaysOpenOnClick="True" FontWeight="Bold" Margin="0" VerticalAlignment="Center" FontSize="14">
                 <MenuItem Header="Clear" Click="clear_click">
                     <MenuItem.Icon>
@@ -105,14 +105,14 @@
             </MenuItem>
             <MenuItem Header="About" Template="{DynamicResource MenuItemControlTemplate1}" FontWeight="Bold" Margin="0" VerticalAlignment="Center" FontSize="14"/>
         </Menu>
-        <ComboBox x:Name="jobType" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Width="148" FontSize="16" Background="#FFBF8F8F" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged" FontWeight="Bold">
+        <ComboBox x:Name="jobType" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" Width="148" FontSize="16" Background="#FF8F9EBF" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged" FontWeight="Bold">
             <System:String>Manufacture</System:String>
             <System:String>Invention</System:String>
         </ComboBox>
         <TextBox x:Name="runs" HorizontalAlignment="Left" Margin="792,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" FontSize="18" Background="#FFFFDFA7" TextAlignment="Right"/>
         <Label x:Name="label_Copy" Content="What Are You Making?" HorizontalAlignment="Left" Margin="182,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Label x:Name="label_Copy1" Content="No. Of Runs" HorizontalAlignment="Left" Margin="792,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <ComboBox x:Name="bme" HorizontalAlignment="Left" Margin="900,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0">
+        <ComboBox x:Name="bme" HorizontalAlignment="Left" Margin="900,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0" Background="#FF8F9EBF">
             <System:String>0</System:String>
             <System:String>1</System:String>
             <System:String>2</System:String>
@@ -125,7 +125,7 @@
             <System:String>9</System:String>
             <System:String>10</System:String>
         </ComboBox>
-        <ComboBox x:Name="cme" Margin="989,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67">
+        <ComboBox x:Name="cme" Margin="989,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
             <System:String>Same</System:String>
             <System:String>0</System:String>
             <System:String>1</System:String>
@@ -147,7 +147,7 @@
             <StackPanel x:Name="stackingPanel" HorizontalAlignment="Left" Width="Auto" Orientation="Vertical" FlowDirection="LeftToRight">
             </StackPanel>
         </ScrollViewer>
-        <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67">
+        <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
             <System:String>None</System:String>
             <System:String>T1</System:String>
             <System:String>T2</System:String>

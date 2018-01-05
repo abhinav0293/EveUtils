@@ -14,7 +14,7 @@ namespace EveTools.DataModels
         public List<Skill> reqSkills = new List<Skill>();
         int count = 0;
         public string product;
-        public string in_bp;
+        public List<string> in_bp = new List<string>();
 
         public Invention(int outputId, int count)
         {
@@ -24,6 +24,11 @@ namespace EveTools.DataModels
             {
                 o.count = o.count * count;
             }
+        }
+
+        public Invention()
+        {
+
         }
     }
 }

@@ -27,10 +27,6 @@ namespace EveTools.Views
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            App.initData();
-            App.getManuList();
-            App.getInvList();
-            App.initEff();
             parent.set = true;
             Close();
         }

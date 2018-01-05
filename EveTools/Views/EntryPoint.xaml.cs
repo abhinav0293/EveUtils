@@ -26,14 +26,7 @@ namespace EveTools.Views
 
         public EntryPoint()
         {
-            InitPage ip = new InitPage();
-            App.ip = ip;
-            ip.parent = this;
-            ip.ShowDialog();
-            while (!set)
-            {
-
-            }
+            App.initEff();
             InitializeComponent();
             outputReset();
             inputReset();
@@ -61,7 +54,7 @@ namespace EveTools.Views
             App.currentColor = -1;
             if (Actb.SelectedItem == null)
             {
-                MessageBox.Show("Type in the Search Box and Select an Item form the Drop Down before pressing the Search button", "Error");
+                MessageBox.Show("Type in the Search Box and Select an Item form the Drop Down before pressing the Search Button\n\n\n\n(Going by the fact that this had to be explained to you i'm guessing you're the type that buys Toilet Paper with Instructions to use it Printed on it)", "Error");
                 return;
             }
             if (jobType.SelectedIndex == 0)
@@ -155,7 +148,7 @@ namespace EveTools.Views
         {
             jobType.SelectedIndex = 0;
             Actb.SelectedItem = "";
-            runs.Text = "";
+            runs.Text = "1";
             bme.SelectedIndex = 0;
             cme.SelectedIndex = 0;
             rigs.SelectedIndex = 0;

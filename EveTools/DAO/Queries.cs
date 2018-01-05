@@ -120,15 +120,18 @@ namespace EveTools.DAO
                         in eve.blueprint_activity
                         where ct.product_id == id && ct.activity_id == 8
                         select ct;
-            blueprint_activity ba = query.Single();
-
+            List<blueprint_activity> ba = query.ToList();
+            int ids = ba[0].id;
             var cquery = from ct
                          in eve.bp_components
-                         where ct.bp_act_id == ba.id
+                         where ct.bp_act_id == ids
                          select ct;
             List<bp_components> comps = cquery.ToList();
 
-            i.in_bp = getItemName((int)ba.bp_id);
+            foreach(blueprint_activity baa in ba)
+            {
+                i.in_bp.Add(getItemName((int)baa.bp_id));
+            }
             i.product = getItemName(id);
 
             foreach (bp_components comp in comps)
@@ -139,7 +142,7 @@ namespace EveTools.DAO
 
             var squery = from ct
                          in eve.blueprint_skills
-                         where ct.bp_act_id == ba.id
+                         where ct.bp_act_id == ids
                          select ct;
             List<blueprint_skills> bs = squery.ToList();
 
