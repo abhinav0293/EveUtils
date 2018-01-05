@@ -173,7 +173,9 @@
     <Resource Include="Resources\eveback.jpg" />
     <Resource Include="Resources\desc.ico" />
     <Resource Include="Resources\background.jpg" />
-    <Content Include="Resources\Dump20171224.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Dump20180105.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
