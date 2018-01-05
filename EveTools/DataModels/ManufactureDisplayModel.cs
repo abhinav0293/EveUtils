@@ -527,7 +527,7 @@ namespace EveTools.DataModels
                 }
                 else
                 {
-                    Border br = ItemGenerator.generateSkillRow(s.skillName, s.level, offset+20, level, false);
+                    Border br = ItemGenerator.generateSkillRow(sk.skillName, sk.level, offset+20, level, false);
                     sp.Children.Add(br);
                 }
             }

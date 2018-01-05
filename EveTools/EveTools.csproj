@@ -117,9 +117,6 @@
     <Compile Include="Views\EntryPoint.xaml.cs">
       <DependentUpon>EntryPoint.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InitPage.xaml.cs">
-      <DependentUpon>InitPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -154,10 +151,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EntryPoint.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\InitPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

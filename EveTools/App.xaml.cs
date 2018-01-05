@@ -21,7 +21,6 @@ namespace EveTools
         public static List<string> invList = new List<string>();
         public static string root = "C:\\ProgramData\\EveTools";
         public static Dictionary<string, double> eff;
-        public static InitPage ip;
         public static List<Color> colorList = new List<Color>();
         public static List<Color> innerList = new List<Color>();
         public static int currentColor = -1;

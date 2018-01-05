@@ -20,7 +20,8 @@ namespace EveTools.Views
     /// </summary>
     public partial class EntryPoint : Window
     {
-        public volatile bool set = false;
+
+        #region init_close
         private Blueprint bp;
         InventionDisplayModel idm;
 
@@ -32,43 +33,11 @@ namespace EveTools.Views
             inputReset();
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (jobType.SelectedIndex == 0)
-                App.auto = App.manuList;
-            else
-                App.auto = App.invList;
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             App.saveEff();
         }
-
-        private void Search_Click(object sender, RoutedEventArgs e)
-        {
-            outputReset();
-            bp = null;
-            idm = null;
-            App.innerColor = -1;
-            App.currentColor = -1;
-            if (Actb.SelectedItem == null)
-            {
-                MessageBox.Show("Type in the Search Box and Select an Item form the Drop Down before pressing the Search Button\n\n\n\n(Going by the fact that this had to be explained to you i'm guessing you're the type that buys Toilet Paper with Instructions to use it Printed on it)", "Error");
-                return;
-            }
-            if (jobType.SelectedIndex == 0)
-            {
-                manufacturingJob();
-                projectButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                inventionJob();
-            }
-            copyButton.Visibility = Visibility.Visible;
-            itemDesc.Visibility = Visibility.Visible;
-        }
+        #endregion
 
         #region job_type
         private void manufacturingJob()
@@ -136,6 +105,7 @@ namespace EveTools.Views
         }
         #endregion
 
+        #region reset
         private void outputReset()
         {
             stackingPanel.Children.Clear();
@@ -153,10 +123,19 @@ namespace EveTools.Views
             cme.SelectedIndex = 0;
             rigs.SelectedIndex = 0;
         }
+        #endregion
 
+        #region buttons
         private void itemDesc_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(bp.desc, Actb.SelectedItem.ToString());
+            if (bp != null)
+            {
+                MessageBox.Show(bp.desc, Actb.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show(Queries.getInstance().getItemDesc(idm.i.product), idm.i.product);
+            }
         }
 
         private void copy_click(object sender, RoutedEventArgs e)
@@ -173,18 +152,123 @@ namespace EveTools.Views
                     st = createClipboardDataInv();
                 }
             }
-
             Clipboard.SetText(st);
         }
 
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            outputReset();
+            bp = null;
+            idm = null;
+            App.innerColor = -1;
+            App.currentColor = -1;
+            if (Actb.SelectedItem == null)
+            {
+                MessageBox.Show("Type in the Search Box and Select an Item form the Drop Down before pressing the Search Button\n\n\n\n(Going by the fact that this had to be explained to you i'm guessing you're the type that buys Toilet Paper with Instructions to use it Printed on it)", "Error");
+                return;
+            }
+            if (jobType.SelectedIndex == 0)
+            {
+                manufacturingJob();
+                projectButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                inventionJob();
+            }
+            copyButton.Visibility = Visibility.Visible;
+            itemDesc.Visibility = Visibility.Visible;
+        }
+        #endregion
+
+        #region misc_tools
         private string createClipboardDataInv()
         {
-            return "";
+            Invention i = idm.i;
+
+            string st = i.in_bp.Count == 1 ? "Blueprint Required" : "Relic Required(Any One)" + Environment.NewLine;
+            foreach(string s in i.in_bp)
+            {
+                st += s + Environment.NewLine;
+            }
+
+            st += Environment.NewLine + "Other:" + Environment.NewLine;
+            foreach (Other o in i.reqs)
+            {
+                st += o.name + ":\t\t\t" + o.count + Environment.NewLine;
+            }
+
+            return st;
         }
 
         private string createClipboardDataManu()
         {
-            return "";
+            string st = "Overview:" + Environment.NewLine;
+            foreach(Component c in bp.components)
+            {
+                st += c.compName + "\t\t\t" + c.compCount + Environment.NewLine;
+            }
+
+            if (bp.hasMineral)
+            {
+                st += Environment.NewLine + "Minerals:" + Environment.NewLine;
+                st += "Tritanium:\t\t\t" + bp.mineral.trit + Environment.NewLine;
+                st += "Pyerite:\t\t\t" + bp.mineral.pyerite + Environment.NewLine;
+                st += "Mexallon:\t\t\t" + bp.mineral.mexallon + Environment.NewLine;
+                st += "Isogen:\t\t\t\t" + bp.mineral.isogen + Environment.NewLine;
+                st += "Nocxium:\t\t\t" + bp.mineral.nocxium + Environment.NewLine;
+                st += "Zydrine:\t\t\t" + bp.mineral.zydrine + Environment.NewLine;
+                st += "Megacyte:\t\t\t" + bp.mineral.megacyte + Environment.NewLine;
+                st += "Morphite:\t\t\t" + bp.mineral.morphite + Environment.NewLine;
+                st += Environment.NewLine + "Ores:" + Environment.NewLine;
+                st += "Spodumain:\t\t\t" + bp.ores.spod + Environment.NewLine;
+                st += "Gneiss:\t\t\t\t" + bp.ores.gneiss + Environment.NewLine;
+                st += "Crokite:\t\t\t" + bp.ores.crokite + Environment.NewLine;
+                st += "Ochre:\t\t\t\t" + bp.ores.ochre + Environment.NewLine;
+                st += "Bistot:\t\t\t\t" + bp.ores.bistot + Environment.NewLine;
+                st += "Arkonor:\t\t\t" + bp.ores.ark + Environment.NewLine;
+                st += "Mercoxit:\t\t\t" + bp.ores.mercox + Environment.NewLine;
+            }
+
+            if (bp.hasPI)
+            {
+                st += Environment.NewLine + "PI:" + Environment.NewLine;
+                foreach(string s in bp.piList.Keys)
+                {
+                    PI pi = bp.piList[s];
+                    st += pi.name + ":\t\t\t" + pi.count + Environment.NewLine;
+                }
+            }
+
+            if (bp.hasMG)
+            {
+                st += Environment.NewLine + "Moon Goo:" + Environment.NewLine;
+                foreach (string s in bp.mg.Keys)
+                {
+                    MoonGoo pi = bp.mg[s];
+                    st += pi.name + ":\t\t\t" + pi.count + Environment.NewLine;
+                }
+            }
+
+            if (bp.hasOther)
+            {
+                st += Environment.NewLine + "Other:" + Environment.NewLine;
+                foreach (string s in bp.otherComps.Keys)
+                {
+                    Other pi = bp.otherComps[s];
+                    st += pi.name + ":\t\t\t" + pi.count + Environment.NewLine;
+                }
+            }
+            return st;
         }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (jobType.SelectedIndex == 0)
+                App.auto = App.manuList;
+            else
+                App.auto = App.invList;
+        }
+        #endregion
     }
 }
