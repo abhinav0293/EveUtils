@@ -86,7 +86,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Tools" Template="{DynamicResource MenuItemControlTemplate1}" StaysOpenOnClick="True" FontWeight="Bold" Margin="0" VerticalAlignment="Center" FontSize="14">
-                <MenuItem Header="Ore Calculator">
+                <MenuItem Header="Ore Calculator" Click="MenuItem_Click">
                     <MenuItem.Icon>
                         <Image Source="/EveTools;component/Resources/mining.ico" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </MenuItem.Icon>

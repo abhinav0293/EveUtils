@@ -270,5 +270,15 @@ namespace EveTools.Views
                 App.auto = App.invList;
         }
         #endregion
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OreCalc ore = new OreCalc
+            {
+                parent = this
+            };
+            Visibility = Visibility.Hidden;
+            ore.Show();
+        }
     }
 }
