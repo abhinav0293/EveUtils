@@ -109,7 +109,6 @@ namespace EveTools.DataModels
 
         private void createOtherView()
         {
-            other = new Expander();
             TextBox tb = new TextBox
             {
                 Text = "Items Required",
@@ -118,12 +117,20 @@ namespace EveTools.DataModels
                 FontSize = 20,
                 Foreground = new SolidColorBrush(Colors.Black)
             };
-            other.Background = new SolidColorBrush(Colors.LightBlue);
-            other.Header = tb;
-            other.Width = 755;
-            StackPanel sp = new StackPanel();
-            sp.Orientation = Orientation.Vertical;
-            other.Content = sp;
+
+            StackPanel sp = new StackPanel
+            {
+                Orientation = Orientation.Vertical
+            };
+
+            other = new Expander
+            {
+                Background = new SolidColorBrush(Colors.LightBlue),
+                Header = tb,
+                Width = 755,
+                Content = sp
+            };
+
             foreach (Other p in i.reqs)
             {
                 Border b = ItemGenerator.generateRow(p.name, p.count, 20, 1, false);

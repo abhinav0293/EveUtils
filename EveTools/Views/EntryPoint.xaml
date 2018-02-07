@@ -147,11 +147,11 @@
             </StackPanel>
         </ScrollViewer>
         <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
-            <System:String>None</System:String>
-            <System:String>T1</System:String>
-            <System:String>T2</System:String>
+            <System:String>NPC</System:String>
+            <System:String>Station/Fortizar</System:String>
+            <System:String>Sotiyo</System:String>
         </ComboBox>
-        <Label x:Name="label_Copy5" Content="Rigs" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="label_Copy5" Content="Location" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="itemDesc" HorizontalAlignment="Left" Height="24" Margin="796,110,0,0" VerticalAlignment="Top" Width="24" OpacityMask="Red" Background="#FFF3F795" ToolTip="Item Description" Click="itemDesc_Click">
             <StackPanel Width="18" Height="18">
                 <Image Height="18" Width="18" Source="/EveTools;component/Resources/desc.ico" HorizontalAlignment="Center" VerticalAlignment="Center"/>

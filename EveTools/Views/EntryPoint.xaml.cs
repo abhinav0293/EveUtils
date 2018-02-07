@@ -49,10 +49,10 @@ namespace EveTools.Views
                     sme = 0;
                     break;
                 case 1:
-                    sme = 0.01;
+                    sme = 0.02;
                     break;
                 case 2:
-                    sme = 0.02;
+                    sme = 0.042;
                     break;
             }
             double bm = Convert.ToDouble(bme.SelectedValue) / 100;
@@ -102,6 +102,16 @@ namespace EveTools.Views
         {
             EffSet es = new EffSet();
             es.ShowDialog();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OreCalc ore = new OreCalc
+            {
+                parent = this
+            };
+            Visibility = Visibility.Hidden;
+            ore.Show();
         }
         #endregion
 
@@ -271,14 +281,5 @@ namespace EveTools.Views
         }
         #endregion
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            OreCalc ore = new OreCalc
-            {
-                parent = this
-            };
-            Visibility = Visibility.Hidden;
-            ore.Show();
-        }
     }
 }
