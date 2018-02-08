@@ -27,6 +27,7 @@ namespace EveTools.DataModels
         public double sme = 0.0;
         public string desc = "";
         public string name = "";
+        public int activity = 1;
 
         public Blueprint(string name, int activity, long count, double sme, double bme, double cme)
         {
@@ -35,7 +36,17 @@ namespace EveTools.DataModels
             this.sme = 1.0 - sme;
             this.count = count;
             this.name = name;
-            components = Queries.getInstance().getCompList(name,activity);
+            this.activity = activity;
+        }
+
+        public Blueprint()
+        {
+
+        }
+
+        public void figureStuffOut()
+        {
+            components = Queries.getInstance().getCompList(name, activity);
             desc = Queries.getInstance().getItemDesc(name);
 
             identifyComponents(activity);
@@ -54,8 +65,8 @@ namespace EveTools.DataModels
         {
             foreach(Component comp in components)
             {
-                comp.compCount = (long)Math.Ceiling(comp.compCount * sme);
-                comp.compCount = (long)Math.Ceiling(comp.compCount * bme * count);
+                double temp = comp.compCount * sme;
+                comp.compCount = (long)Math.Ceiling(temp * bme * count);
                 if (comp.hasBlueprint && activity==1)
                 {
                     getCompReq(comp);
@@ -85,6 +96,7 @@ namespace EveTools.DataModels
         private void getCompReq(Component comp)
         {
             Blueprint bp = new Blueprint(comp.compName, 1, comp.compCount, 1.0-sme, 1.0-cme,1.0-cme);
+            bp.figureStuffOut();
             comp.bp = bp;
             if (bp.hasPI)
             {

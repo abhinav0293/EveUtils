@@ -1,0 +1,14 @@
+﻿<Window x:Class="EveTools.Views.ProjectSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EveTools.Views"
+        mc:Ignorable="d"
+        Title="Project Selector" Height="200" Width="300" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid Background="#FF2B8CB0">
+        <ComboBox x:Name="projectList" HorizontalAlignment="Center" Margin="0,62,0,0" VerticalAlignment="Top" Width="207" FontWeight="Bold"/>
+        <Label Content="Select a Project To Load:" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Foreground="#FF67F316" FontSize="16" FontWeight="Bold"/>
+        <Button Content="Load Project" HorizontalAlignment="Center" Margin="0,108,0,0" VerticalAlignment="Top" Width="135" Height="51" Background="#FFC9562A" FontSize="16" FontWeight="Bold" Click="selected"/>
+    </Grid>
+</Window>

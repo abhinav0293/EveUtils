@@ -221,6 +221,8 @@ namespace EveTools.DAO
             if (i.Group.Equals("Moon Materials") || i.Group.Equals("Intermediate Materials")
                 || i.Group.Equals("Composite"))
                 return "Moon";
+            if (i.Category.Equals("Ship"))
+                return "Ship";
             return "Other";
         }
         #endregion

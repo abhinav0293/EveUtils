@@ -140,9 +140,11 @@
     <Compile Include="DataModels\Ores.cs" />
     <Compile Include="DataModels\Other.cs" />
     <Compile Include="DataModels\PI.cs" />
+    <Compile Include="DataModels\Project.cs" />
     <Compile Include="DataModels\Skill.cs" />
     <Compile Include="Tools\ItemGenerator.cs" />
     <Compile Include="Tools\OreCalculator.cs" />
+    <Compile Include="Utils\FileIO.cs" />
     <Compile Include="Utils\RequiredValidationRule.cs" />
     <Compile Include="Utils\SuggestionProvider.cs" />
     <Compile Include="Views\EffSet.xaml.cs">
@@ -153,6 +155,15 @@
     </Compile>
     <Compile Include="Views\OreCalc.xaml.cs">
       <DependentUpon>OreCalc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectCreator.xaml.cs">
+      <DependentUpon>ProjectCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectSelector.xaml.cs">
+      <DependentUpon>ProjectSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectViewer.xaml.cs">
+      <DependentUpon>ProjectViewer.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +205,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OreCalc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

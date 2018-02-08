@@ -51,7 +51,7 @@
         </Grid.Background>
         <wpf:AutoCompleteTextBox VerticalAlignment="Top"
                                  Height="25"
-                                 Margin="182,60,498,0"
+                                 Margin="182,60,648,0"
                                  Grid.Column="0"
                                  Watermark="Search here"
                                  Provider="{StaticResource ResourceKey=fsp}"
@@ -91,7 +91,7 @@
                         <Image Source="/EveTools;component/Resources/mining.ico" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Project Viewer">
+                <MenuItem Header="Project Viewer" Click="selectProject">
                     <MenuItem.Icon>
                         <Image Source="/EveTools;component/Resources/project.ico" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </MenuItem.Icon>
@@ -108,10 +108,10 @@
             <System:String>Manufacture</System:String>
             <System:String>Invention</System:String>
         </ComboBox>
-        <TextBox x:Name="runs" HorizontalAlignment="Left" Margin="792,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" FontSize="18" Background="#FFFFDFA7" TextAlignment="Right"/>
+        <TextBox x:Name="runs" HorizontalAlignment="Left" Margin="642,60,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" FontSize="18" Background="#FFFFDFA7" TextAlignment="Right"/>
         <Label x:Name="label_Copy" Content="What Are You Making?" HorizontalAlignment="Left" Margin="182,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <Label x:Name="label_Copy1" Content="No. Of Runs" HorizontalAlignment="Left" Margin="792,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <ComboBox x:Name="bme" HorizontalAlignment="Left" Margin="900,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0" Background="#FF8F9EBF">
+        <Label x:Name="label_Copy1" Content="No. Of Runs" HorizontalAlignment="Left" Margin="640,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <ComboBox x:Name="bme" HorizontalAlignment="Left" Margin="750,60,0,0" VerticalAlignment="Top" Width="67" FontSize="16" SelectedIndex="0" Background="#FF8F9EBF">
             <System:String>0</System:String>
             <System:String>1</System:String>
             <System:String>2</System:String>
@@ -124,7 +124,7 @@
             <System:String>9</System:String>
             <System:String>10</System:String>
         </ComboBox>
-        <ComboBox x:Name="cme" Margin="989,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
+        <ComboBox x:Name="cme" Margin="839,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
             <System:String>Same</System:String>
             <System:String>0</System:String>
             <System:String>1</System:String>
@@ -138,26 +138,32 @@
             <System:String>9</System:String>
             <System:String>10</System:String>
         </ComboBox>
-        <Label x:Name="label_Copy2" Content="BPME" HorizontalAlignment="Left" Margin="900,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
-        <Label x:Name="label_Copy3" Content="CME" HorizontalAlignment="Left" Margin="989,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="label_Copy2" Content="BPME" HorizontalAlignment="Left" Margin="750,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="label_Copy3" Content="CME" HorizontalAlignment="Left" Margin="839,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="button" Content="Search" HorizontalAlignment="Left" Margin="1161,60,0,0" VerticalAlignment="Top" Width="97" FontSize="18" Background="#FF95FFAD" FontWeight="Bold" Click="Search_Click"/>
         <Label x:Name="label_Copy4" Content="Job Type" HorizontalAlignment="Left" Margin="20,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <ScrollViewer Margin="10,110,483,10" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="stackingPanel" HorizontalAlignment="Left" Width="Auto" Orientation="Vertical" FlowDirection="LeftToRight">
             </StackPanel>
         </ScrollViewer>
-        <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
-            <System:String>NPC</System:String>
-            <System:String>Station/Fortizar</System:String>
-            <System:String>Sotiyo</System:String>
+        <ComboBox x:Name="structType" HorizontalAlignment="Left" Margin="926,60,0,0" VerticalAlignment="Top" Width="120" FontSize="16" Background="#FF8F9EBF" SelectionChanged="ComboBox_SelectionChanged_1">
+            <System:String>Station</System:String>
+            <System:String>Engineering Complex</System:String>
+            <System:String>Other Structures</System:String>
         </ComboBox>
-        <Label x:Name="label_Copy5" Content="Location" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <ComboBox x:Name="rigs" Margin="1073,60,0,0" VerticalAlignment="Top" FontSize="16" SelectedIndex="0" HorizontalAlignment="Left" Width="67" Background="#FF8F9EBF">
+            <System:String>None</System:String>
+            <System:String>T1</System:String>
+            <System:String>T2</System:String>
+        </ComboBox>
+        <Label x:Name="label_Copy5" Content="Rigs" HorizontalAlignment="Left" Margin="1073,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
+        <Label x:Name="label_Copy6" Content="Structure" HorizontalAlignment="Left" Margin="923,27,0,0" VerticalAlignment="Top" Foreground="#FFCFC841" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="itemDesc" HorizontalAlignment="Left" Height="24" Margin="796,110,0,0" VerticalAlignment="Top" Width="24" OpacityMask="Red" Background="#FFF3F795" ToolTip="Item Description" Click="itemDesc_Click">
             <StackPanel Width="18" Height="18">
                 <Image Height="18" Width="18" Source="/EveTools;component/Resources/desc.ico" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Button x:Name="copyButton" Content="Copy Data To Clipboard" HorizontalAlignment="Left" Margin="948,236,0,0" VerticalAlignment="Top" Width="163" Height="59" Background="#FF95FFAD" FontSize="14" FontWeight="Bold" Click="copy_click"/>
-        <Button x:Name="projectButton" Content="Create Project" HorizontalAlignment="Left" Margin="948,356,0,0" VerticalAlignment="Top" Width="163" Height="59" Background="#FF95FFAD" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="projectButton" Content="Create Project" HorizontalAlignment="Left" Margin="948,356,0,0" VerticalAlignment="Top" Width="163" Height="59" Background="#FF95FFAD" FontSize="14" FontWeight="Bold" Click="createProject"/>
     </Grid>
 </Window>

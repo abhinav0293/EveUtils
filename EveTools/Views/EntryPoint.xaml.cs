@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using EveTools.DataModels;
 using EveTools.DAO;
+using EveTools.Utils;
 
 namespace EveTools.Views
 {
@@ -24,10 +25,11 @@ namespace EveTools.Views
         #region init_close
         private Blueprint bp;
         InventionDisplayModel idm;
+        public Project proj;
 
         public EntryPoint()
         {
-            App.initEff();
+            FileIO.initEff();
             InitializeComponent();
             outputReset();
             inputReset();
@@ -35,25 +37,25 @@ namespace EveTools.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            App.saveEff();
+            FileIO.saveEff();
         }
         #endregion
 
         #region job_type
         private void manufacturingJob()
         {
-            double sme = 0;
-            switch (rigs.SelectedIndex)
+            string st = Actb.SelectedItem.ToString();
+            double sme = 0.0;
+            if (Queries.getInstance().checkType(Queries.getInstance().getItemId(st)).Equals("Ship"))
             {
-                case 0:
-                    sme = 0;
-                    break;
-                case 1:
-                    sme = 0.02;
-                    break;
-                case 2:
-                    sme = 0.042;
-                    break;
+                sme = calcSME();
+            }
+            else
+            {
+                if (structType.SelectedIndex == 1)
+                {
+                    sme = 0.01;
+                }
             }
             double bm = Convert.ToDouble(bme.SelectedValue) / 100;
             string s = cme.SelectedValue.ToString();
@@ -67,6 +69,7 @@ namespace EveTools.Views
                 cm = Convert.ToDouble(cme.SelectedValue) / 100;
             }
             bp = new Blueprint(Actb.SelectedItem.ToString(), 1, Convert.ToInt32(runs.Text), sme, bm, cm);
+            bp.figureStuffOut();
             bp.getSkills();
             ManufactureDisplayModel bpd = new ManufactureDisplayModel(bp, 20, 1, false);
             List<Expander> list = bpd.getViews();
@@ -113,6 +116,28 @@ namespace EveTools.Views
             Visibility = Visibility.Hidden;
             ore.Show();
         }
+
+        private void selectProject(object sender, RoutedEventArgs e)
+        {
+            proj = null;
+            ProjectSelector projS = new ProjectSelector
+            {
+                parent = this
+            };
+            if (projS.ok)
+            {
+                projS.ShowDialog();
+                if (proj != null)
+                {
+                    ProjectViewer projView = new ProjectViewer(true, proj)
+                    {
+                        parent = this
+                    };
+                    projView.Show();
+                    this.Visibility = Visibility.Hidden;
+                }
+            }
+        }
         #endregion
 
         #region reset
@@ -131,7 +156,9 @@ namespace EveTools.Views
             runs.Text = "1";
             bme.SelectedIndex = 0;
             cme.SelectedIndex = 0;
+            structType.SelectedIndex = 0;
             rigs.SelectedIndex = 0;
+            rigs.IsEnabled = false;
         }
         #endregion
 
@@ -189,6 +216,27 @@ namespace EveTools.Views
             copyButton.Visibility = Visibility.Visible;
             itemDesc.Visibility = Visibility.Visible;
         }
+
+        private void createProject(object sender, RoutedEventArgs e)
+        {
+            proj = null;
+            ProjectCreator projC = new ProjectCreator
+            {
+                bp = bp,
+                parent = this
+            };
+            projC.ShowDialog();
+            if (proj != null)
+            {
+                ProjectViewer projView = new ProjectViewer(false, proj)
+                {
+                    parent = this
+                };
+                projView.Show();
+                this.Visibility = Visibility.Hidden;
+            }
+        }
+
         #endregion
 
         #region misc_tools
@@ -278,6 +326,54 @@ namespace EveTools.Views
                 App.auto = App.manuList;
             else
                 App.auto = App.invList;
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (structType.SelectedIndex == 0)
+            {
+                rigs.IsEnabled = false;
+            }
+            else
+            {
+                rigs.IsEnabled = true;
+            }
+        }
+
+        private double calcSME()
+        {
+            double sme = 0.0;
+            if (structType.SelectedIndex == 1)
+            {
+                sme = 0.01;
+                switch (rigs.SelectedIndex)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        sme = 0.051428571;
+                        break;
+                    case 2:
+                        sme = 0.06;
+                        break;
+                }
+                return sme;
+            }
+            if (structType.SelectedIndex == 2)
+            {
+                switch (rigs.SelectedIndex)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        sme = 0.041428571;
+                        break;
+                    case 2:
+                        sme = 0.05;
+                        break;
+                }
+            }
+            return 0.0;
         }
         #endregion
 
