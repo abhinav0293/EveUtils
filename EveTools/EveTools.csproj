@@ -145,6 +145,7 @@
     <Compile Include="Tools\ItemGenerator.cs" />
     <Compile Include="Tools\OreCalculator.cs" />
     <Compile Include="Utils\FileIO.cs" />
+    <Compile Include="Utils\ObjectCloning.cs" />
     <Compile Include="Utils\RequiredValidationRule.cs" />
     <Compile Include="Utils\SuggestionProvider.cs" />
     <Compile Include="Views\EffSet.xaml.cs">
@@ -196,6 +197,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Styling\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EffSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Dump20180105.sql" />
+    <Resource Include="Resources\redo-arrow-symbol.ico" />
+    <Resource Include="Resources\save.ico" />
+    <Resource Include="Resources\undo.ico" />
     <Resource Include="Resources\setting.png" />
     <Resource Include="Resources\proc.jpg" />
     <SplashScreen Include="Resources\Splash.png">

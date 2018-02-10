@@ -40,7 +40,7 @@ namespace EveTools.Views
         {
             if (!saved)
             {
-                MessageBoxResult result =  MessageBox.Show("Do You Want To Save The Project", "Save??", MessageBoxButton.YesNoCancel);
+                MessageBoxResult result =  MessageBox.Show("Do You Want To Save The Project(You Won't Be Able To Rollback Changes)", "Save??", MessageBoxButton.YesNoCancel);
                 if(result == MessageBoxResult.Cancel)
                 {
                     e.Cancel = true;
@@ -53,6 +53,31 @@ namespace EveTools.Views
                 }
             }
             parent.Visibility = Visibility.Visible;
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

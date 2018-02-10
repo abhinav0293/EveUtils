@@ -134,7 +134,7 @@ namespace EveTools.Views
                         parent = this
                     };
                     projView.Show();
-                    this.Visibility = Visibility.Hidden;
+                    Visibility = Visibility.Hidden;
                 }
             }
         }
