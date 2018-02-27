@@ -435,12 +435,11 @@
     <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#F0F0F0"/>
     <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#D9D9D9"/>
     <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
-    <SolidColorBrush x:Key="TabItem.Selected.Background" Color="Yellow"/>
-    <SolidColorBrush x:Key="TabItem.Selected.Foreground" Color="Yellow"/>
+    <SolidColorBrush x:Key="TabItem.Selected.Background" Color="Aquamarine"/>
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Foreground" Value="Red"/>
-        <Setter Property="Background" Value="Aquamarine"/>
+        <Setter Property="Background" Value="Yellow"/>
         <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="6,2,6,2"/>
@@ -620,5 +619,22 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{x:Null}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

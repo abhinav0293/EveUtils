@@ -9,22 +9,6 @@
         mc:Ignorable="d"
         Title="Eve Tools" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Closing="Window_Closing" Background="{x:Null}">
     <Window.Resources>
-        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{x:Null}" />
-            <Setter Property="BorderBrush" Value="{x:Null}" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="IsReadOnly" Value="True" />
-            <Setter Property="IsTabStop" Value="False" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{x:Null}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <utils:SuggestionProvider x:Key="fsp" />
         <DataTemplate x:Key="fsTemplate">
             <Border Padding="5">

@@ -57,12 +57,32 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl HorizontalAlignment="Left" Height="574" Margin="10,107,0,0" VerticalAlignment="Top" Width="1254">
+        <TabControl Margin="10,60,10,30">
             <TabItem Header="Minerals" FontSize="16" FontWeight="Bold" Foreground="Red">
+                <Grid Background="#FF55C965">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Tritanium" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" FontSize="26" FontWeight="Bold" Foreground="BlueViolet"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Ores" FontSize="18" FontWeight="Bold">
             </TabItem>
         </TabControl>
+        <StatusBar HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="1275" BorderBrush="#FF286666" BorderThickness="2" Background="#FF3DC5C5">
+            <Rectangle Height="20" Width="20" Fill="Yellow"/>
+            <Label Content="Intial Requirement" FontSize="12" Margin="0,0,0,-6" FontWeight="Bold"/>
+            <Rectangle Height="20" Width="20" Fill="OrangeRed"/>
+            <Label Content="Current Requirement" FontSize="12" Margin="0,0,0,-6" FontWeight="Bold"/>
+        </StatusBar>
 
     </Grid>
 </Window>

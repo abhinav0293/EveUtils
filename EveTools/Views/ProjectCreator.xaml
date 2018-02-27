@@ -8,7 +8,7 @@
         Title="Project Creator" Height="200" Width="300" WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" ShowInTaskbar="False" ResizeMode="NoResize">
     <Grid Background="#FF1CB6A1">
         <Label Content="Enter Name for Project:" FontWeight="Bold" FontSize="16" Margin="0,28,0,0"  HorizontalAlignment="Center" Foreground="#FFE5FB0B" Height="30" VerticalAlignment="Top"/>
-        <TextBox x:Name="projName" Height="20" Width="200" HorizontalAlignment="Center"/>
         <Button Content="Create Project" HorizontalAlignment="Center" Margin="0,108,0,0" VerticalAlignment="Top" Width="137" Height="42" FontWeight="Bold" FontSize="16" Background="#FF79F314" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="#FF2654B8" BorderBrush="{x:Null}" Click="Button_Click"/>
+        <TextBox x:Name="projName" Height="20" Width="200" HorizontalAlignment="Center" Background="#FF459CCD" Foreground="#FFFF3A00" FontWeight="Bold" FontSize="16"/>
     </Grid>
 </Window>

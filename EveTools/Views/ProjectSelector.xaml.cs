@@ -28,7 +28,7 @@ namespace EveTools.Views
             List<string> projList = FileIO.getProjectList();
             if (projList.Count == 0)
             {
-                MessageBox.Show("You Don't Have Any Saved Projects", "Putting The Cart Before The Horse");
+                MessageBox.Show("You Don't Have Any Saved Projects", "Putting The Cart Before The Horse?");
                 ok = false;
             }
             foreach(string s in projList)
