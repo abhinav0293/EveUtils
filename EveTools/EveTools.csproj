@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -143,6 +143,7 @@
     <Compile Include="DataModels\Project.cs" />
     <Compile Include="DataModels\Skill.cs" />
     <Compile Include="Tools\ItemGenerator.cs" />
+    <Compile Include="Tools\MineralCalculator.cs" />
     <Compile Include="Tools\OreCalculator.cs" />
     <Compile Include="Utils\FileIO.cs" />
     <Compile Include="Utils\ObjectCloning.cs" />

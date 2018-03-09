@@ -28,6 +28,7 @@ namespace EveTools.DataModels
         public string desc = "";
         public string name = "";
         public int activity = 1;
+        public bool isShip = false;
 
         public Blueprint(string name, int activity, long count, double sme, double bme, double cme)
         {
@@ -46,6 +47,19 @@ namespace EveTools.DataModels
 
         public void figureStuffOut()
         {
+            int id = Queries.getInstance().getItemId(name);
+            isShip = Queries.getInstance().checkType(id).Equals("Ship") ? true : false;
+            if (!isShip)
+            {
+                if (sme < 1.0)
+                {
+                    sme = 0.99;
+                }
+                else
+                {
+                    sme = 1.0;
+                }
+            }
             components = Queries.getInstance().getCompList(name, activity);
             desc = Queries.getInstance().getItemDesc(name);
 

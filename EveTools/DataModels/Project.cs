@@ -48,13 +48,20 @@ namespace EveTools.DataModels
             {
                 redo = new List<Blueprint>();
             }
-            redo.Add(current);
+            redo.Add(ObjectCloning.CloneJson(current));
             Blueprint bpc = rollback.Last();
             rollback.Remove(bpc);
             if (rollback.Count == 0)
             {
                 rollback = null;
             }
+            return bpc;
+        }
+
+        public Blueprint discardChange()
+        {
+            Blueprint bpc = rollback.Last();
+            rollback.Remove(bpc);
             return bpc;
         }
 
@@ -68,7 +75,7 @@ namespace EveTools.DataModels
             {
                 rollback = new List<Blueprint>();
             }
-            rollback.Add(current);
+            rollback.Add(ObjectCloning.CloneJson(current));
             Blueprint bpo = redo.Last();
             redo.Remove(bpo);
             if (redo.Count == 0)

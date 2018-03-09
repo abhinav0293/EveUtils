@@ -88,7 +88,7 @@ namespace EveTools.DAO
         {
             var bpq = from ct
                       in eve.blueprints
-                      where ct.blueprintName.StartsWith(name)
+                      where ct.blueprintName.Equals(name + " Blueprint")
                       select ct;
             blueprint bp = bpq.ToList()[0];
 

@@ -96,6 +96,10 @@ namespace EveTools.Utils
 
         public static void saveProject(Project proj)
         {
+            if(File.Exists(root + "\\Projects\\" + proj.name + ".json"))
+            {
+                File.Delete(root + "\\Projects\\" + proj.name + ".json");
+            }
             File.WriteAllText(root + "\\Projects\\" + proj.name + ".json", JsonConvert.SerializeObject(proj));
         }
 
